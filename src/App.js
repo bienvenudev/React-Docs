@@ -2,7 +2,11 @@ import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
 
-  return <button className="square" onClick={onSquareClick}>{ value }</button>;
+  return (
+    <button className="square" onClick={onSquareClick}>
+    {value}
+  </button>
+  );
 }
 
 export default function Board() {
@@ -10,6 +14,9 @@ export default function Board() {
   const [squares, useSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
+    if (squares[i]) {
+      return;
+    }
     const nextSquares = squares.slice();
     if (xIsNext) {
       nextSquares[i] = "X";
